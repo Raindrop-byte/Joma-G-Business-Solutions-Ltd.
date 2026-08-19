@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joma G Business Solutions Ltd</title>
+  
+  <!-- ===== Favicon & SEO Open Graph Meta Tags ===== -->
+  <link rel="icon" type="image/png" href="public/images/JMG logo.png">
+  <meta name="description" content="Joma G Business Solutions Ltd - Empowering your business through strategic, innovative, and tailored business solutions designed to drive results.">
+  <meta property="og:title" content="Joma G Business Solutions Ltd">
+  <meta property="og:description" content="Premier business consulting, IT solutions, and financial planning.">
+  <meta property="og:image" content="public/images/JMG logo.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --primary-color: #002244;
+      --secondary-color: #ffe066;
+      --text-color: #333;
+      --light-bg: #e6ecf2;
+      --border-color: #b0c4de;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: 0.3s ease;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2rem;
+      --spacing-xl: 3rem;
+      --max-width: 1200px;
+    }
+
+    @keyframes heroFloat {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes softPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0, 34, 68, 0.3); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes modalPopUp {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .reveal-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Times New Roman', Times, serif; 
+      margin: 0; 
+      padding: 0; 
+      line-height: 1.6;
+      color: var(--text-color);
+      overflow-x: hidden;
+      background-color: #d9e2ec;
+      transition: background-color var(--transition), color var(--transition);
+    }
+    
+    header { 
+      background: var(--primary-color); 
+      color: white; 
+      padding: 0.8rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      overflow: visible;
+    }
+
+    h1 { font-size: clamp(1.4rem, 4vw, 2.6rem); }
+    h2 { font-size: clamp(1.3rem, 3.5vw, 2.2rem); }
+    h3 { font-size: clamp(1rem, 2.5vw, 1.6rem); }
+    h4 { font-size: clamp(0.85rem, 2vw, 1.2rem); }
+    p { font-size: clamp(0.85rem, 1.8vw, 1.05rem); }
+    
+    .header-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-bg-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(250px, 45vw, 450px);
+      height: auto;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.5rem;
+    }
+    
+    .logo-area { display: flex; align-items: center; flex: 0 0 auto; }
+    
+    .company-logo {
+      max-width: clamp(220px, 40vw, 380px);
+      height: clamp(48px, 8vw, 86px);
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+    
+    .header-center-title {
+      flex: 1;
+      text-align: center;
+      padding: 0.2rem 0;
+      min-width: 0;
+    }
+    
+    .header-center-title h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: clamp(0.8rem, 2.2vw, 1.5rem);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: linear-gradient(180deg, #ffffff 20%, var(--secondary-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 0.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+    }
+
+    .menu-toggle-wrapper { position: relative; }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 0.25rem;
+      padding: 0.2rem;
+      flex: 0 0 auto;
+    }
+
+    .menu-toggle span {
+      width: 22px;
+      height: 2.5px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .header-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .icon-wrapper { position: relative; }
+    
+    .header-icons .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      font-size: 0.85rem;
+      color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      line-height: 1;
+    }
+    
+    .header-icons .icon-btn:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-1px); }
+
+    .overlay-popup {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 0.4rem 0;
+      z-index: 99999;
+      min-width: 220px;
+      flex-direction: column;
+      border: 1px solid var(--border-color);
+    }
+
+    #nav-popup { left: 0; }
+    #profile-popup, #search-popup, #more-popup { right: 0; }
+
+    .overlay-popup.active { display: flex; }
+
+    .overlay-popup a, .overlay-popup div.popup-item {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s;
+    }
+
+    .overlay-popup a:last-child, .overlay-popup div.popup-item:last-child { border-bottom: none; }
+    .overlay-popup a:hover { background: #f0f4f8; }
+
+    .section-title-center { text-align: center; margin-bottom: 1.2rem; }
+    .section-title-center h2 { margin: 0 0 0.4rem 0; }
+    .section-title-center p { margin: 0; color: #555; }
+
+    .section { 
+      padding: clamp(var(--spacing-md), 4vw, var(--spacing-xl)); 
+      max-width: var(--max-width); 
+      margin: auto; 
+      border-bottom: 2px solid #b0c4de;
+      scroll-margin-top: 100px;
+    }
+    .section:nth-of-type(odd) { background-color: #dbe4ef; }
+    .section:nth-of-type(even) { background-color: #f0f4f8; }
+    .section:last-of-type { border-bottom: none; }
+
+    .hero { 
+      background: #c5d4e6; 
+      padding: clamp(var(--spacing-md), 5vw, var(--spacing-xl)); 
+      text-align: center;
+      border-bottom: 2px solid #b0c4de;
+      scroll-margin-top: 100px;
+    }
+
+    .hero h2 { animation: heroFloat 0.5s ease-out forwards; }
+    .hero p { animation: heroFloat 0.6s ease-out 0.1s forwards; opacity: 0; }
+    .hero .btn { animation: softPulse 3s infinite ease-in-out; }
+    
+    #services .flex-container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #services .event-box {
+      width: 100%;
+      min-height: 85px;
+      max-height: 105px;
+      padding: 0.4rem;
+      background-color: #002244;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+      border-radius: 6px;
+    }
+
+    #services .event-box img.card-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    #services .event-box:hover { transform: translateY(-3px); }
+    #services .event-box::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.62); z-index: 1; }
+    #services .event-box h3, #services .event-box p { position: relative; z-index: 2; margin: 0.05rem 0; }
+    #services .event-box h3 { font-size: clamp(0.7rem, 1.4vw, 0.85rem); line-height: 1.1; }
+    #services .event-box p { font-size: clamp(0.55rem, 1.1vw, 0.72rem); line-height: 1.05; }
+    #services .event-box:nth-child(5) { grid-column: 1 / -1; max-width: 240px; margin: 0 auto; }
+
+    #about { text-align: center; }
+    #about .about-card {
+      background: var(--light-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    #about .about-card p.fixed-bold {
+      position: sticky;
+      top: 0;
+      background: var(--light-bg);
+      z-index: 10;
+      margin: 0 0 0.8rem 0;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      font-size: clamp(0.95rem, 1.9vw, 1.15rem);
+    }
+
+    #about .about-card-scroll {
+      max-height: 160px;
+      overflow-y: auto;
+      padding-top: 0.2rem;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    @media (min-width: 769px) {
+      #about .about-card-scroll { max-height: none; overflow-y: visible; mask-image: none; -webkit-mask-image: none; }
+    }
+
+    #team .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.3rem, 1vw, 0.8rem);
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .card.team-member {
+      background: var(--light-bg);
+      padding: clamp(0.3rem, 0.8vw, 0.6rem);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card.team-member:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .team-member img { width: 100%; max-height: clamp(60px, 12vw, 110px); aspect-ratio: 1/1; object-fit: contain; background-color: #f0f4f8; border-radius: 4px; margin-bottom: 0.3rem; }
+    .team-member img.transparent-bg { background-color: transparent !important; }
+    .team-member h4 { margin: 0.1rem 0; font-size: clamp(0.55rem, 1.2vw, 0.8rem); word-wrap: break-word; }
+    .team-member p { margin: 0; font-size: clamp(0.45rem, 0.9vw, 0.68rem); color: #444; }
+
+    #testimonials .flex-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; max-width: 950px; margin: 0 auto; }
+    #testimonials .card { flex: 1 1 calc(33.333% - 0.6rem); min-width: 200px; padding: 0.8rem; background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: var(--shadow); transition: transform 0.3s ease; }
+    #testimonials .card:hover { transform: translateY(-3px); }
+    #testimonials p { font-size: clamp(0.8rem, 1.3vw, 0.9rem); font-style: italic; margin: 0 0 0.3rem 0; }
+
+    .stats-section { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; max-width: 950px; margin: 1.5rem auto 0 auto; }
+    .stat-card { background: transparent !important; border: 2px dashed var(--border-color); border-radius: 10px; padding: 0.6rem 0.4rem; text-align: center; box-shadow: none; display: flex; flex-direction: column; justify-content: center; min-height: 80px; }
+    .stat-card:hover { transform: translateY(-2px); border-color: var(--primary-color); }
+    .stat-card .stat-number { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 800; color: #cc5500; margin: 0 0 0.15rem 0; line-height: 1.1; display: block; }
+    .stat-card .stat-label { font-size: clamp(0.65rem, 1.05vw, 0.8rem); font-weight: bold; color: #444; margin: 0; line-height: 1.2; }
+
+    .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.8rem; }
+    .faq-item { background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+    .faq-question { width: 100%; background: none; border: none; padding: 1rem 1.2rem; text-align: left; font-size: clamp(0.95rem, 1.8vw, 1.1rem); font-weight: bold; color: var(--primary-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question::after { content: '+'; font-size: 1.4rem; transition: transform 0.3s ease; }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; padding: 0 1.2rem; font-size: clamp(0.85rem, 1.5vw, 0.98rem); color: #444; transition: max-height 0.3s ease, padding 0.3s ease; }
+    .faq-item.active .faq-answer { max-height: 150px; padding: 0 1.2rem 1.2rem 1.2rem; }
+
+    .event-section { padding: clamp(var(--spacing-md), 3vw, var(--spacing-lg)); background: var(--light-bg); text-align: center; border-bottom: 2px solid #b0c4de; scroll-margin-top: 100px; }
+    .carousel-container { overflow: hidden; width: 100%; max-width: 750px; margin: 0 auto; border-radius: 8px; position: relative; touch-action: pan-y; cursor: grab; user-select: none; }
+    .carousel-wrapper { display: flex; flex-direction: row; transition: transform 0.4s ease; width: 100%; }
+    
+    .carousel-slide { 
+      display: flex; 
+      flex-direction: row; 
+      min-width: 100%; 
+      gap: 0.6rem; 
+      padding: 0.2rem; 
+      justify-content: space-between;
+    }
+
+    .carousel-slide .event-box { 
+      flex: 1; 
+      aspect-ratio: 1 / 1; 
+      max-width: calc(33.333% - 0.4rem);
+      padding: 0.4rem; 
+      border-radius: 6px; 
+      background-color: #002244; 
+      color: #fff; 
+      text-align: center; 
+      position: relative; 
+      overflow: hidden; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      cursor: pointer; 
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-slide .event-box:hover { transform: translateY(-3px); }
+    .carousel-slide .event-box img.card-bg-img { 
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      z-index: 0; 
+    }
+    .carousel-slide .event-box::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1; }
+    .carousel-slide .event-box h3, .carousel-slide .event-box p { position: relative; z-index: 2; margin: 0.1rem 0; }
+    .carousel-slide .event-box h3 { font-size: clamp(0.7rem, 1.3vw, 0.9rem); color: var(--secondary-color); line-height: 1.1; }
+    .carousel-slide .event-box p { font-size: clamp(0.55rem, 1vw, 0.75rem); line-height: 1.1; }
+    
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #b0c4de; border: none; cursor: pointer; padding: 0; transition: background 0.3s ease, transform 0.3s ease; }
+    .dot.active { background: var(--primary-color); transform: scale(1.2); }
+
+    #contact { max-width: 550px; margin: 0 auto; text-align: center; padding: clamp(1rem, 3vw, var(--spacing-lg)) 1rem; scroll-margin-top: 100px; }
+    .contact-phone-display { margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .contact-phone-display a { color: var(--primary-color); text-decoration: none; }
+    .contact-phone-display a:hover { text-decoration: underline; }
+    .contact-social-wrapper { display: flex; justify-content: center; align-items: center; gap: 1.2rem; margin-bottom: 0.8rem; }
+    .contact-social-wrapper a { text-decoration: none; font-size: 1.3rem; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+    .contact-social-wrapper a .social-logo-img { width: 22px; height: 22px; object-fit: contain; filter: brightness(0); }
+    .contact-social-wrapper a .fa-instagram { background: radial-gradient(circle at 30% 107%, #FCAF45 0%, #F56040 25%, #E1306C 50%, #833AB4 75%, #405DE6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .contact-social-wrapper a .fa-facebook { color: #1877F2; }
+    .contact-social-wrapper a .fa-youtube { color: #FF0000; }
+    .contact-social-wrapper a .fa-envelope { color: #002244; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; font-family: inherit; }
+
+    .btn { background: var(--primary-color); color: white; padding: 0.6rem 1.2rem; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; align-self: center; margin-top: 0.3rem; transition: transform 0.2s ease; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .section-divider { border: 0; height: 3px; background: linear-gradient(to right, transparent, var(--border-color), transparent); max-width: 800px; margin: 3rem auto; }
+
+    /* ===== Partners Section ===== */
+    #partners { 
+      width: 100%; 
+      max-width: 100% !important; 
+      padding: 0.6rem 1rem 0.8rem 1rem !important; 
+      text-align: center; 
+      background-color: #dbe4ef; 
+      border-bottom: 2px solid #b0c4de; 
+      scroll-margin-top: 100px; 
+    }
+    .partners-inner { max-width: var(--max-width); margin: 0 auto; }
+    .partners-grid { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 0.8rem; width: 100%; margin-top: 0.3rem; overflow-x: auto; padding-bottom: 0.1rem; }
+    .partner-card { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0.1rem; flex: 1 1 0; min-width: 80px; display: flex; justify-content: center; align-items: center; }
+    .partner-card img { width: 100%; max-width: 90px; height: 26px; object-fit: contain; transition: transform var(--transition); }
+    .partner-card img:hover { transform: scale(1.05); }
+
+    /* ===== Fixed Centered Modal with Scrollable Internal Body ===== */
+    .modal { display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.55); justify-content: center; align-items: center; z-index: 10000; padding: 1rem; box-sizing: border-box; }
+    .modal-content { background: #fff; padding: clamp(1.2rem, 3vw, 2rem); border-radius: 10px; width: 100%; max-width: min(94vw, 520px); max-height: 85vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 12px 36px rgba(0,0,0,0.3); overflow: hidden; }
+    
+    .dashboard-scroll-area {
+      overflow-y: auto;
+      max-height: calc(85vh - 80px);
+      padding-right: 0.4rem;
+      margin-top: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-content img { 
+      width: auto; 
+      max-width: 100%; 
+      max-height: 250px; 
+      height: auto; 
+      object-fit: contain; 
+      border-radius: 6px; 
+      background: transparent; 
+      display: block; 
+      margin: 0 auto;
+      flex-shrink: 0; 
+    }
+
+    .promo-modal-content { position: relative; background: rgba(255, 255, 255, 0.98); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; max-width: min(95vw, 540px) !important; padding: 1.2rem 1.6rem !important; animation: modalPopUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .promo-modal-content::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; height: 320px; background-image: url('public/images/JMG logo.png'); background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.06; pointer-events: none; z-index: 1; }
+    .promo-modal-content > * { position: relative; z-index: 2; }
+
+    .close-btn { background-color: #ff4444; color: white; padding: 0.35rem 0.65rem; border: none; border-radius: 4px; position: absolute; top: 12px; right: 12px; font-weight: bold; cursor: pointer; z-index: 10; }
+
+    footer { background: var(--primary-color); color: white; padding: 0.8rem; text-align: center; }
+    footer p { margin: 0; font-size: 0.8rem; }
+
+    /* Dark Mode */
+    body.dark-mode { background: #001224; color: #f3efe6 !important; }
+    body.dark-mode header, body.dark-mode footer { background: var(--primary-color) !important; color: white !important; }
+    body.dark-mode header h1, body.dark-mode header a, body.dark-mode header button, body.dark-mode footer p { color: white !important; }
+    body.dark-mode .section:nth-of-type(odd), body.dark-mode .card, body.dark-mode .faq-item { background-color: #001c38 !important; color: #f3efe6 !important; border-color: #003366 !important; }
+    body.dark-mode .section:nth-of-type(even) { background-color: #2b1d15 !important; color: #f3efe6 !important; border-color: #442e22 !important; }
+    body.dark-mode #partners { background-color: #001c38 !important; border-color: #003366 !important; }
+    body.dark-mode .section-divider { background: linear-gradient(to right, transparent, #003366, transparent); }
+    body.dark-mode .stat-card { border-color: #003366 !important; }
+    body.dark-mode .stat-card .stat-number { color: #cc5500 !important; }
+    body.dark-mode .stat-card .stat-label { color: #f3efe6 !important; }
+    body.dark-mode .faq-question { color: #ffe066 !important; }
+    body.dark-mode .faq-answer { color: #f3efe6 !important; }
+    body.dark-mode #about .about-card { background-color: #e0f2fe !important; color: #0f172a !important; border-color: #bae6fd !important; }
+    body.dark-mode #about .about-card h2, body.dark-mode #about .about-card p, body.dark-mode #about .about-card strong { color: #0f172a !important; }
+    body.dark-mode #about .about-card p.fixed-bold { background: #e0f2fe !important; color: #0f172a !important; }
+    body.dark-mode .hero { background-color: #e0f2fe !important; color: #002244 !important; }
+    body.dark-mode .hero h2, body.dark-mode .hero p { color: #0f172a !important; }
+    body.dark-mode .event-section { background-color: #2b1d15 !important; color: #f3efe6 !important; }
+    body.dark-mode .dot { background: #442e22; }
+    body.dark-mode .dot.active { background: var(--secondary-color); }
+    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode p, body.dark-mode strong, body.dark-mode a { color: #f9f6f0 !important; }
+    body.dark-mode .team-member p, body.dark-mode .contact-form input, body.dark-mode .contact-form textarea, body.dark-mode .contact-form select { color: #f3efe6 !important; background: #001428 !important; border-color: #003366 !important; }
+    body.dark-mode .social-logo-img { filter: brightness(0) invert(1) !important; }
+    body.dark-mode .contact-social-wrapper a .fa-envelope { color: #fdf6e2 !important; }
+    body.dark-mode .contact-phone-display a { color: #f9f6f0 !important; }
+    body.dark-mode .overlay-popup, body.dark-mode .modal-content, body.dark-mode .promo-modal-content { background: #001c38 !important; color: #f3efe6 !important; }
+    body.dark-mode .promo-modal-content::before { filter: brightness(0) invert(1); }
+    body.dark-mode .overlay-popup a:hover { background: #2b1d15 !important; color: #ffe066 !important; }
+    body.dark-mode .btn { background: #f0e6d2 !important; color: #002244 !important; }
+    
+    body:not(.dark-mode) .partner-card img { filter: none; }
+    body.dark-mode .partner-card img { filter: none !important; }
+  </style>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<header>
+  <img src="public/images/JMG logo.png" alt="Header Watermark Logo" class="header-bg-logo" />
+  <div class="header-container">
+    <div class="header-top">
+      <div class="logo-area">
+        <img src="public/images/JMG logo.png" alt="Joma G Logo" class="company-logo" />
+      </div>
+      <div class="header-center-title">
+        <h1>Joma G Business Solutions</h1>
+      </div>
+    </div>
+    <div class="header-bottom-bar">
+      <div class="menu-toggle-wrapper">
+        <button class="menu-toggle" id="menu-toggle" title="Toggle Menu" onclick="togglePopup('nav-popup')">
+          <span></span><span></span><span></span>
+        </button>
+        <div id="nav-popup" class="overlay-popup">
+          <a href="#services" onclick="closeAllPopups()">Services</a>
+          <a href="#about" onclick="closeAllPopups()">About Us</a>
+          <a href="#team" onclick="closeAllPopups()">Meet the Team</a>
+          <a href="#testimonials" onclick="closeAllPopups()">Testimonials</a>
+          <a href="#news-magazine" onclick="closeAllPopups()">News & Magazine</a>
+          <a href="#faq" onclick="closeAllPopups()">FAQ</a>
+          <a href="#Events" onclick="closeAllPopups()">Events</a>
+          <a href="#contact" onclick="closeAllPopups()">Contact Us</a>
+          <a href="#partners" onclick="closeAllPopups()">Partners</a>
+        </div>
+      </div>
+
+      <div class="header-icons">
+        <div class="icon-wrapper">
+          <button class="icon-btn" title="Account" onclick="togglePopup('profile-popup')"><span class="material-icons">account_circle</span></button>
+          <div id="profile-popup" class="overlay-popup">
+            <div id="profile-popup-content">
+              <a href="#" onclick="openProfileModal(); closeAllPopups(); return false;">👤 Sign In / Create Account</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-wrapper">
+          <button class="icon-btn" title="Search" onclick="togglePopup('search-popup')"><span class="material-icons">search</span></button>
+          <div id="search-popup" class="overlay-popup">
+            <a href="#" onclick="openSearchModal(); closeAllPopups(); return false;">🔍 Search Website & Database</a>
+          </div>
+        </div>
+
+        <div class="icon-wrapper">
+          <button class="icon-btn" title="More" onclick="togglePopup('more-popup')"><span class="material-icons">more_vert</span></button>
+          <div id="more-popup" class="overlay-popup">
+            <a href="#" onclick="alert('Chat feature coming soon!'); closeAllPopups(); return false;">💬 Chat with Us</a>
+            <a href="#contact" onclick="openContactPopup(); closeAllPopups(); return false;">📧 Contact Us</a>
+            <a href="#" onclick="toggleDarkMode(); closeAllPopups(); return false;">🌙 Light/Dark Mode</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>Welcome to the Power behind your Future Success</h2>
+  <p>Empowering your business through strategic, innovative, and tailored Business solutions designed to drive results.</p>
+  <a href="javascript:void(0);" class="btn" onclick="openContactPopup()">Get Started</a>
+</section>
+
+<section id="services" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>Our Services</h2>
+    <p>Comprehensive services designed to address your most pressing business challenges.</p>
+  </div>
+  <div class="flex-container">
+    <div class="event-box" onclick="openStaticReader('Business Consulting', 'Strategic Advice & Operations Optimization', 'public/images/conslt.avif', 'Our Business Consulting services provide thorough strategic advice, market positioning, and operational efficiency analysis to scale your enterprise sustainably.')">
+      <img src="public/images/conslt.avif" alt="Business Consulting" class="card-bg-img" />
+      <h3><span style="color: #ffe066;">Business Consulting</span></h3>
+      <p>Strategic advice & growth.</p>
+    </div>
+    <div class="event-box" onclick="openStaticReader('IT Solutions', 'Digital Transformation & Systems Integration', 'public/images/tech-support-services.avif', 'We deliver custom IT systems, robust cybersecurity integration, and digital transformation support tailored for modern corporate infrastructure.')">
+      <img src="public/images/tech-support-services.avif" alt="IT Solutions" class="card-bg-img" />
+      <h3><span style="color: #ffe066;">IT Solutions</span></h3>
+      <p>Custom IT support.</p>
+    </div>
+    <div class="event-box" onclick="openStaticReader('Financial Planning', 'Financial Analysis & Growth Forecasting', 'public/images/financial-planning.jpg', 'Gain expert financial analysis, capital budgeting, risk management, and long-term financial growth forecasting to secure your business future.')">
+      <img src="public/images/financial-planning.jpg" alt="Financial Planning" class="card-bg-img" />
+      <h3><span style="color: #ffe066;">Financial Planning</span></h3>
+      <p>Financial analysis & growth.</p>
+    </div>
+    <div class="event-box" onclick="openStaticReader('Marketing', 'Digital Marketing & Brand Amplification', 'public/images/Dig Mrkt.png', 'Elevate your market presence with next-gen digital marketing strategies, targeted campaigns, and data-driven customer acquisition models.')">
+      <img src="public/images/Dig Mrkt.png" alt="Marketing" class="card-bg-img" />
+      <h3><span style="color: #ffe066;">Marketing</span></h3>
+      <p>Amplify your brand.</p>
+    </div>
+    <div class="event-box" onclick="openStaticReader('Graphics & Design', 'Creative Branding & Visual Identity', 'public/images/business-chart.jpg', 'Transform your corporate identity with professional creative design solutions, UI/UX aesthetics, and high-impact visual branding assets.')">
+      <img src="public/images/business-chart.jpg" alt="Graphics & Design" class="card-bg-img" />
+      <h3><span style="color: #ffe066;">Graphics & Design</span></h3>
+      <p>Creative branding.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>About Us</h2>
+  </div>
+  <div class="about-card">
+    <p class="fixed-bold"><strong>We don’t just offer business solutions — we build momentum.</strong></p>
+    <div class="about-card-scroll">
+      <p>Joma G Solutions is a premier business consulting firm dedicated to helping organizations achieve sustainable growth and operational excellence. With a team of experienced consultants, we deliver tailored solutions that address your unique challenges.</p>
+      <p>Our approach combines deep industry knowledge, analytical rigor, and practical implementation to drive measurable results. We partner with clients across various sectors providing strategic guidance.</p>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>Meet the Team</h2>
+  </div>
+  <div class="team-grid">
+    <div class="card team-member"><img src="public/images/Henry.png" alt="Henry" /><h4><u>Henry Odhiambo</u></h4><p>MD / Strategist</p></div>
+    <div class="card team-member"><img src="public/images/Dave.png" alt="David" /><h4><u>David Oduor</u></h4><p>Marketing Lead</p></div>
+    <div class="card team-member"><img src="public/images/Nobby.png" alt="Nobert" /><h4><u>Nobert Obonyo</u></h4><p>Tech & Media</p></div>
+    <div class="card team-member"><img src="public/images/Elvis.png" alt="Elvis" /><h4><u>Elvis Were</u></h4><p>IT & Comms</p></div>
+    <div class="card team-member"><img src="public/images/odondi.png" alt="Odondi" /><h4><u>David Odondi</u></h4><p>Finance Director</p></div>
+    <div class="card team-member"><img src="public/images/JaPala.png" alt="Emmanuel" /><h4><u>Emmanuel Obuola</u></h4><p>Head Logistics</p></div>
+    <div class="card team-member"><img src="public/images/Persons icon.jpg" alt="Rooney" /><h4><u>Rooney Roggers</u></h4><p>Operations Mgr</p></div>
+    <div class="card team-member"><img src="public/images/Persons icon.jpg" alt="Shalton" /><h4><u>Shalton Otieno</u></h4><p>QA & Compliance</p></div>
+  </div>
+</section>
+
+<section id="testimonials" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>Client Testimonials</h2>
+  </div>
+  <div class="flex-container">
+    <div class="card"><p>"Incredible transformation! Boosted performance by 40%!"</p><strong>- Jane Doe, CEO</strong></div>
+    <div class="card"><p>"Reliable and innovative. Their IT team is top-notch."</p><strong>- Mark Kiptoo, COO</strong></div>
+    <div class="card"><p>"Top strategic partners for corporate growth."</p><strong>- Sarah L., Founder</strong></div>
+  </div>
+
+  <div class="stats-section">
+    <div class="stat-card">
+      <span class="stat-number" data-target="10" data-suffix="+">0</span>
+      <p class="stat-label">Years of Experience</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number" data-target="250" data-suffix="+">0</span>
+      <p class="stat-label">Businesses Acquired/Assisted</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number" data-target="15" data-suffix="+">0</span>
+      <p class="stat-label">Number of Services Offered</p>
+    </div>
+  </div>
+</section>
+
+<!-- Dedicated News, Updates & Company Magazine Section -->
+<section id="news-magazine" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>News, Updates & Company Magazine</h2>
+    <p>Read our latest corporate news, event updates, and digital magazine editions.</p>
+  </div>
+
+  <div id="posts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; max-width: var(--max-width); margin: 0 auto;">
+    <p style="text-align: center; grid-column: 1 / -1;">Loading latest publications...</p>
+  </div>
+</section>
+
+<section id="faq" class="section reveal-section">
+  <div class="section-title-center">
+    <h2>Frequently Asked Questions</h2>
+    <p>Find quick answers to common questions about our solutions and services.</p>
+  </div>
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">What services does Joma G Business Solutions offer?</button>
+      <div class="faq-answer"><p>We provide comprehensive solutions including Business Consulting, IT Solutions, Financial Planning, Digital Marketing, Graphics & Design, and tailored corporate growth strategies.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">How do I schedule a consultation?</button>
+      <div class="faq-answer"><p>You can easily schedule a consultation by clicking the "Get Started" button in the hero section or using the contact options at the bottom of the page.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Are your advisory services customized for small businesses?</button>
+      <div class="faq-answer"><p>Yes! We partner with startups, small-to-medium enterprises (SMEs), and large corporations, tailoring our strategic insights to match your specific operational scale.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">How can I access client dashboard features?</button>
+      <div class="faq-answer"><p>You can sign in or register via the account icon in the top header right corner to access upcoming client portal capabilities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="Events" class="event-section section reveal-section">
+  <div class="section-title-center">
+    <h2>Events</h2>
+    <p>Catch up with our latest Events Lineup</p>
+  </div>
+  <div class="carousel-container" id="carousel-container">
+    <div class="carousel-wrapper">
+      
+      <div class="carousel-slide">
+        <div class="event-box" onclick="openStaticReader('Joma G Podcasts', 'Business Insights & Cultural Conversations', 'public/images/Podcast.png', 'Tune into the official channel to catch deep business insights, executive interviews, and strategic discussions.')">
+          <img src="public/images/Podcast.png" alt="Joma G Podcasts" class="card-bg-img" />
+          <h3>Joma G Podcasts</h3><p>Business insights</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('Giants of the Week', 'Startup Pitch Competitions & Investor Spotlights', 'public/images/giants.jpg', 'Giants of the Week showcases high-potential startups pitching directly to seasoned venture capitalists and corporate partners for incubation.')">
+          <img src="public/images/giants.jpg" alt="Giants of the Week" class="card-bg-img" />
+          <h3>Giants of the Week</h3><p>Startup pitches</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('Business Top Chart', 'Industry Leader Recognition & Corporate Rankings', 'public/images/business-chart.jpg', 'Our Business Top Chart celebrates high-performing enterprises and business leaders making remarkable strides in economic impact and innovation.')">
+          <img src="public/images/business-chart.jpg" alt="Business Top Chart" class="card-bg-img" />
+          <h3>Business Top Chart</h3><p>Leader recognition</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="event-box" onclick="openStaticReader('Tech Expo & AI 2026', 'AI & Digital Innovation Discovery Event', 'public/images/ai-expo.jpg', 'Explore cutting-edge artificial intelligence implementations, automated workflow systems, and next-generation corporate tech stacks.')">
+          <img src="public/images/ai-expo.jpg" alt="Tech Expo & AI 2026" class="card-bg-img" />
+          <h3>Tech Expo & AI 2026</h3><p>AI discovery event</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('Blockchain Expo', 'Decentralized Finance & Blockchain Showcase', 'public/images/blockchain.jpg', 'Discover secure blockchain architecture, smart contracts, and decentralized ledgers transforming modern corporate financial auditing.')">
+          <img src="public/images/blockchain.jpg" alt="Blockchain Expo" class="card-bg-img" />
+          <h3>Blockchain Expo</h3><p>Blockchain technology</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('Graphic Design Workshop', 'Professional Creative Process & UI/UX Training', 'public/images/design-thinking.jpg', 'An immersive workshop focused on creative design thinking, brand storytelling, and modern interface aesthetics.')">
+          <img src="public/images/design-thinking.jpg" alt="Graphic Design Workshop" class="card-bg-img" />
+          <h3>Graphic Design Workshop</h3><p>Creative process</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="event-box" onclick="openStaticReader('Financial Literacy Workshop', 'Wealth Management & Corporate Cashflow Strategies', 'public/images/financial-planning.jpg', 'Master effective money management, liquidity planning, and sustainable investment strategies for growing businesses.')">
+          <img src="public/images/financial-planning.jpg" alt="Financial Literacy Workshop" class="card-bg-img" />
+          <h3>Financial Literacy Workshop</h3><p>Financial growth</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('Digital Marketing Summit', 'Next-Gen Growth Hacking & Omnichannel Marketing', 'public/images/D%20marketing.jpg', 'Learn advanced growth hacking techniques, conversion rate optimization, and omnichannel digital marketing campaigns.')">
+          <img src="public/images/D%20marketing.jpg" alt="Digital Marketing Summit" class="card-bg-img" />
+          <h3>Digital Marketing Summit</h3><p>Next-gen strategies</p>
+        </div>
+        <div class="event-box" onclick="openStaticReader('SME Networking Breakfast', 'Founders Breakfast & Strategic Partnerships', 'public/images/startup.jpg', 'Connect with fellow SME owners, industry experts, and potential co-founders over a morning networking breakfast.')">
+          <img src="public/images/startup.jpg" alt="SME Networking Breakfast" class="card-bg-img" />
+          <h3>SME Networking Breakfast</h3><p>Owner connections</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="carousel-dots" id="carousel-dots">
+    <button class="dot active" onclick="showSlide(0)" aria-label="Slide 1"></button>
+    <button class="dot" onclick="showSlide(1)" aria-label="Slide 2"></button>
+    <button class="dot" onclick="showSlide(2)" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- Dedicated Scrollable Article Reader Modal -->
+<div class="modal" id="topic-reader-modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTopicReader()">✕</button>
+    <div class="dashboard-scroll-area">
+      <!-- Back Arrow Container -->
+      <div id="reader-back-container" style="display: none; margin-bottom: 0.4rem;">
+        <button type="button" onclick="openNewsFeedPopup()" style="background: none; border: none; color: var(--primary-color); font-weight: bold; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 0;">
+          ← Back to News & Editions
+        </button>
+      </div>
+      <span id="reader-category" style="font-size: 0.75rem; font-weight: bold; background: var(--secondary-color); color: var(--primary-color); padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; align-self: flex-start;">Magazine & Article</span>
+      <h2 id="reader-title" style="margin: 0.2rem 0 0.1rem 0; color: var(--primary-color);"></h2>
+      <p id="reader-subtitle" style="font-style: italic; color: #555; margin-bottom: 0.2rem; font-size: 0.95rem;"></p>
+      <img id="reader-img" src="" alt="Topic Image" />
+      <div id="reader-body" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-color);"></div>
+      
+      <!-- Added Get Updates button right beneath text per edition inside reader -->
+      <div id="reader-action-container" style="margin-top: 1rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 0.8rem;">
+        <button type="button" class="btn" onclick="openContactPopup(); closeTopicReader();" style="width: 100%;">Get Updates</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Admin Backdoor Publishing Modal (Triggered by Ctrl+Shift+A if logged in as Admin) -->
+<div class="modal" id="admin-modal">
+  <div class="modal-content" style="text-align:left; max-width: 520px;">
+    <button class="close-btn" onclick="closeAdminModal()">✕</button>
+    <div class="dashboard-scroll-area">
+      <h3 style="margin-top: 0; color: var(--primary-color);">Admin Publishing Panel</h3>
+      <p id="admin-user-info" style="font-size:0.9rem; color:#555; margin-bottom:1rem;"></p>
+      
+      <div style="background:#f0f4f8; padding:1rem; border-radius:8px; border:1px solid var(--border-color); margin-bottom: 1rem;">
+        <h4 style="margin:0 0 0.5rem 0; color:var(--primary-color);">Publish News / Magazine Edition</h4>
+        <form class="contact-form" onsubmit="publishCompanyPost(event)">
+          <input type="text" id="post-title" placeholder="Article / Magazine Title" required />
+          <select id="post-category" required>
+            <option value="Magazine">Company Magazine</option>
+            <option value="News">Company News</option>
+            <option value="Event Update">Event Update</option>
+          </select>
+          <input type="url" id="post-image-url" placeholder="Image URL (Optional)" />
+          <input type="url" id="post-external-link" placeholder="External Link / Action URL (Optional - e.g. https://...)" />
+          <textarea id="post-content" rows="4" placeholder="Full article body, description, or update details..." required></textarea>
+          <button type="submit" class="btn" style="width:100%;">Publish Live</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-content" style="text-align: center;">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <h3 id="modal-title"></h3>
+    <p id="modal-description"></p>
+    <img id="modal-img" src="" alt="Event Image" />
+  </div>
+</div>
+
+<div id="search-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeSearchModal()">✕</button>
+    <h3>Search Database & Website</h3>
+    <form class="contact-form" onsubmit="handleSearch(event)" style="margin-top: 1rem;">
+      <input type="text" id="search-input" placeholder="Search services, team, events, records..." required />
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <div id="search-results" style="margin-top: 1rem; font-size: 0.9rem;"></div>
+  </div>
+</div>
+
+<!-- Profile / Auth Modal -->
+<div id="profile-modal" class="modal">
+  <div class="modal-content" style="max-width:420px;">
+    <button class="close-btn" onclick="closeProfileModal()">✕</button>
+    <div id="auth-mode-title" style="text-align:center; font-weight:bold; font-size:1.2rem; color:var(--primary-color); margin-bottom:0.5rem;">Sign In to Your Account</div>
+    
+    <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1rem;">
+      <button type="button" id="tab-signin" class="btn" style="padding:0.4rem 0.8rem; font-size:0.85rem;" onclick="switchAuthTab('signin')">Sign In</button>
+      <button type="button" id="tab-signup" class="btn" style="padding:0.4rem 0.8rem; font-size:0.85rem; background:#666;" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+
+    <form class="contact-form" id="auth-form" onsubmit="handleAuthSubmit(event)">
+      <input type="email" id="auth-email" placeholder="Email Address" required />
+      <input type="password" id="auth-password" placeholder="Password" required />
+      <button type="submit" id="auth-submit-btn" class="btn" style="width:100%;">Sign In</button>
+    </form>
+    
+    <div id="auth-footer-text" style="text-align:center; font-size:0.8rem; margin-top:0.8rem; color:#555;">
+      Don't have an account? <a href="#" onclick="switchAuthTab('signup'); return false;">Create one</a>
+    </div>
+  </div>
+</div>
+
+<div id="welcome-promo-modal" class="modal">
+  <div class="modal-content promo-modal-content" style="text-align:center;">
+    <button type="button" class="close-btn" onclick="closeWelcomePromo()">✕</button>
+    <h3 style="color:var(--primary-color); margin-top:0; margin-bottom:0.25rem;">Welcome to Joma G</h3>
+    <p style="font-size:0.88rem; margin:0 0 0.8rem 0;">Enjoy <strong>15% OFF</strong> your first business consultation or advisory package upon subscription!</p>
+    <form class="contact-form" onsubmit="handlePromoSubmit(event)" style="margin-top:0; display:flex; flex-direction:column; gap:0.4rem;">
+      <input type="email" id="promo-email" placeholder="Enter your email to claim offer" required style="padding:0.45rem 0.6rem;" />
+      <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.4rem; margin-top: 0.3rem; width: 100%;">
+        <input type="checkbox" id="newsletter-checkbox" checked style="width: auto; margin: 0; cursor: pointer; flex-shrink: 0;" />
+        <label for="newsletter-checkbox" style="font-size: clamp(0.72rem, 1.5vw, 0.82rem); text-align: left; cursor: pointer; margin: 0;">Subscribe to our newsletters & updates</label>
+      </div>
+      <button type="submit" class="btn" style="margin-top:0.5rem; padding: 0.5rem 1rem;">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<div id="subscribed-visit-modal" class="modal">
+  <div class="modal-content promo-modal-content" style="text-align:center; max-width:480px;">
+    <button type="button" class="close-btn" onclick="closeSubscribedVisitModal()">✕</button>
+    <h3 style="color:var(--primary-color); margin-top:0;">Welcome Back, Valued Subscriber!</h3>
+    <p style="font-size:0.88rem; margin:0.5rem 0 0.8rem 0;">Great to see you again! Check out our latest corporate growth advisory sessions and company magazine releases.</p>
+    <button type="button" class="btn" onclick="closeSubscribedVisitModal(); openNewsFeedPopup();" style="margin-top:0.4rem; padding: 0.5rem 1rem;">Explore More</button>
+  </div>
+</div>
+
+<div id="contact-popup" class="modal">
+  <div class="modal-content" style="max-width:400px; text-align:center;">
+    <button class="close-btn" onclick="closeContactPopup()">✕</button>
+    <h3>Get Updates</h3>
+    <p style="font-size: 0.85rem; color: #555; margin-bottom: 0.8rem;">Enter your email to receive direct alerts on our latest podcasts and events.</p>
+    <form class="contact-form" onsubmit="submitContactPopup(event)" style="margin-top:0.5rem;">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Company Name" required />
+      <button type="submit" class="btn">Get Updates</button>
+    </form>
+  </div>
+</div>
+
+<section id="contact" class="section reveal-section">
+  <div class="section-title-center"><h2>Contact Us</h2></div>
+  <div class="contact-phone-display">
+    <i class="fas fa-phone-alt" style="margin-right: 6px; color: var(--primary-color);"></i> Tel: <a href="tel:0714752123">0714752123</a>  /  <a href="tel:0740167190">0740167190</a>
+  </div>
+  <div class="contact-social-wrapper">
+    <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/Joma_Gee" target="_blank" rel="noopener" title="X"><img src="public/images/X_logo.png" alt="X Logo" class="social-logo-img" /></a>
+    <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://youtube.com/@Joma_G_Podcast" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="mailto:support@jomagbusinesssolutions.com" title="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+  <form class="contact-form" onsubmit="submitContactForm(event)">
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Email Address" required />
+    <input type="text" placeholder="Company Name" required />
+    <textarea rows="3" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+<hr class="section-divider">
+
+<!-- Partners Section with Title Pinned to the Top & Minimized Height -->
+<section id="partners" class="reveal-section">
+  <div class="partners-inner">
+    <div style="text-align: center; margin-top: 0; margin-bottom: 0.2rem; padding: 0;">
+      <h2 style="margin: 0; font-size: clamp(1.1rem, 2.5vw, 1.5rem);">Partnering Companies</h2>
+      <p style="margin: 0; font-size: 0.8rem; color: #555;">Collaborating with industry leaders to deliver excellence.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card"><img src="public/images/logo geepee.png" alt="Partner 1" /></div>
+      <div class="partner-card"><img src="public/images/JMG logo.png" alt="Partner 2" /></div>
+      <div class="partner-card"><img src="public/images/logo geepee.png" alt="Partner 3" /></div>
+      <div class="partner-card"><img src="public/images/JMG logo.png" alt="Partner 4" /></div>
+      <div class="partner-card"><img src="public/images/logo geepee.png" alt="Partner 5" /></div>
+      <div class="partner-card"><img src="public/images/JMG logo.png" alt="Partner 6" /></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Joma G Business Solutions Ltd | All rights reserved.</p>
+</footer>
+
+<script>
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
+  window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
+
+  function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+      const target = +stat.getAttribute('data-target');
+      const suffix = stat.getAttribute('data-suffix') || '';
+      let current = 0;
+      const increment = target / 50; 
+      const updateCount = () => {
+        current += increment;
+        if (current < target) {
+          stat.innerText = Math.ceil(current) + suffix;
+          setTimeout(updateCount, 30);
+        } else {
+          stat.innerText = target + suffix;
+        }
+      };
+      updateCount();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const observerOptions = { root: null, rootMargin: '0px 0px -30px 0px', threshold: 0.05 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal-section').forEach(section => observer.observe(section));
+    
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStats();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      statsObserver.observe(statsSection);
+    }
+
+    await loadCompanyPosts();
+    await checkUserSession();
+  });
+
+  const SUPABASE_URL = 'https://pfizbzjegsrmcstjyspm.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_qH2_yzwNYD-ysOa40d0TaQ_Wri5eCly';
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true }
+  });
+
+  const ADMIN_EMAIL = 'endadavidgo@gmail.com';
+  let loadedPostsCache = []; // Global cache to hold post data safely
+
+  async function checkUserSession() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    updateProfileUI(session?.user || null);
+
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      updateProfileUI(session?.user || null);
+    });
+  }
+
+  function updateProfileUI(user) {
+    const profilePopupContent = document.getElementById('profile-popup-content');
+    if (!profilePopupContent) return;
+
+    if (user) {
+      const isAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+      profilePopupContent.innerHTML = `
+        <div style="padding: 0.8rem 1rem; border-bottom: 1px solid #eee; background: #f8fafc;">
+          <p style="margin:0; font-size:0.75rem; color:#666; text-transform:uppercase; font-weight:bold;">Signed In Profile</p>
+          <p style="margin:0.2rem 0 0 0; font-size:0.88rem; font-weight:bold; color:var(--primary-color); word-break:break-all;">${user.email}</p>
+          <p style="margin:0.2rem 0 0 0; font-size:0.75rem; color:${isAdmin ? '#cc5500' : '#002244'};">${isAdmin ? '🛡️ Administrator' : '👤 Valued Client'}</p>
+        </div>
+        ${isAdmin ? `<a href="#" onclick="openAdminModalFromProfile(); closeAllPopups(); return false;" style="color:#cc5500;">⚙️ Open Admin Panel</a>` : ''}
+        <a href="#" onclick="handleSignOut(); closeAllPopups(); return false;" style="color: #ff4444;">🚪 Sign Out</a>
+      `;
+    } else {
+      profilePopupContent.innerHTML = `
+        <a href="#" onclick="openProfileModal(); closeAllPopups(); return false;">👤 Sign In / Create Account</a>
+      `;
+    }
+  }
+
+  async function handleSignOut() {
+    await supabaseClient.auth.signOut();
+    alert('You have been signed out successfully.');
+  }
+
+  function openAdminModalFromProfile() {
+    document.getElementById('admin-user-info').innerHTML = `Logged in as Admin`;
+    document.getElementById('admin-modal').style.display = 'flex';
+  }
+
+  // Static / Service Reader
+  function openStaticReader(title, subtitle, imgUrl, content) {
+    document.getElementById('reader-back-container').style.display = 'none';
+    document.getElementById('reader-title').innerText = title;
+    document.getElementById('reader-subtitle').innerText = subtitle;
+    
+    const readerImg = document.getElementById('reader-img');
+    if (imgUrl) {
+      readerImg.src = imgUrl;
+      readerImg.style.display = 'block';
+    } else {
+      readerImg.style.display = 'none';
+    }
+
+    document.getElementById('reader-category').innerText = 'Joma G Editorial & Insights';
+    document.getElementById('reader-body').innerHTML = `<p>${content.replace(/\n/g, '<br>')}</p>`;
+    document.getElementById('topic-reader-modal').style.display = 'flex';
+  }
+
+  // Database Post Reader using Cached Index ID
+  function openPostReader(postId) {
+    const post = loadedPostsCache.find(p => p.id == postId);
+    if (!post) return;
+
+    document.getElementById('reader-back-container').style.display = 'block';
+    document.getElementById('reader-title').innerText = post.title;
+    document.getElementById('reader-subtitle').innerText = 'Published Edition';
+    
+    const readerImg = document.getElementById('reader-img');
+    if (post.image_url) {
+      readerImg.src = post.image_url;
+      readerImg.style.display = 'block';
+    } else {
+      readerImg.style.display = 'none';
+    }
+
+    document.getElementById('reader-category').innerText = post.category || 'Company Magazine';
+    document.getElementById('reader-body').innerHTML = `<p>${(post.content || '').replace(/\n/g, '<br>')}</p>`;
+    document.getElementById('topic-reader-modal').style.display = 'flex';
+  }
+
+  // Opens all published items right inside the news popup feed
+  function openNewsFeedPopup() {
+    document.getElementById('reader-back-container').style.display = 'none';
+    document.getElementById('reader-title').innerText = "Joma G Corporate Newsroom & Magazine";
+    document.getElementById('reader-subtitle').innerText = "All Published Editions & Updates";
+    document.getElementById('reader-category').innerText = "Archive";
+    document.getElementById('reader-img').style.display = 'none';
+
+    let feedHtml = '<div style="display:flex; flex-direction:column; gap:1rem; text-align:left;">';
+    if (loadedPostsCache && loadedPostsCache.length > 0) {
+      loadedPostsCache.forEach(post => {
+        let externalBtnHtml = post.external_link ? `<a href="${post.external_link}" target="_blank" rel="noopener" class="btn" style="padding:0.3rem 0.6rem; font-size:0.75rem; text-decoration:none; display:inline-block; background:#cc5500;">Watch on YouTube</a>` : '';
+        feedHtml += `
+          <div style="background:#f0f4f8; padding:0.8rem; border-radius:6px; border:1px solid var(--border-color);">
+            <span style="font-size:0.7rem; font-weight:bold; background:var(--secondary-color); color:var(--primary-color); padding:0.1rem 0.3rem; border-radius:3px;">${post.category}</span>
+            <h4 style="margin:0.3rem 0 0.2rem 0; color:var(--primary-color);">${post.title}</h4>
+            <p style="font-size:0.85rem; margin:0 0 0.5rem 0; color:#444;">${(post.content || '').substring(0, 90)}...</p>
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <button class="btn" onclick="openPostReader('${post.id}')" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Read Edition</button>
+              ${externalBtnHtml}
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      feedHtml += '<p>No publications found.</p>';
+    }
+    feedHtml += '</div>';
+
+    document.getElementById('reader-body').innerHTML = feedHtml;
+    document.getElementById('topic-reader-modal').style.display = 'flex';
+  }
+
+  function closeTopicReader() {
+    document.getElementById('topic-reader-modal').style.display = 'none';
+  }
+
+  async function loadCompanyPosts() {
+    const postsGrid = document.getElementById('posts-grid');
+    if (!postsGrid) return;
+
+    const { data: posts, error } = await supabaseClient
+      .from('company_posts')
+      .select('*')
+      .order('published_at', { ascending: false });
+
+    if (error) {
+      postsGrid.innerHTML = `<p style="text-align:center; color:#555;">No active feed detected. Create your 'company_posts' table in Supabase.</p>`;
+      return;
+    }
+
+    if (!posts || posts.length === 0) {
+      postsGrid.innerHTML = `<p style="text-align:center;">No news or magazine editions published yet. Check back soon for updates!</p>`;
+      return;
+    }
+
+    loadedPostsCache = posts; // Cache posts globally
+    let html = '';
+    
+    posts.forEach(post => {
+      let postImg = post.image_url || 'public/images/JMG logo.png';
+      let previewText = (post.content || '').substring(0, 110);
+      let externalActionBtn = post.external_link ? `<a href="${post.external_link}" target="_blank" rel="noopener" class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; text-decoration:none; display:inline-block; background:#cc5500;">Watch Live / YT</a>` : '';
+
+      html += `
+        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 1rem;">
+          <div>
+            <img src="${postImg}" alt="Post Image" style="width:100%; height:140px; object-fit:cover; border-radius:4px; margin-bottom:0.5rem;" />
+            <span style="font-size: 0.7rem; font-weight: bold; background: var(--secondary-color); color: var(--primary-color); padding: 0.15rem 0.4rem; border-radius: 4px; text-transform: uppercase;">${post.category}</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.3rem 0; color: var(--primary-color);">${post.title}</h3>
+            <p style="font-size: 0.85rem; color: #555; margin: 0 0 1rem 0;">${previewText}...</p>
+          </div>
+          <div>
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.4rem;">
+              <button class="btn" onclick="openPostReader('${post.id}')" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Read Full Edition</button>
+              ${externalActionBtn}
+            </div>
+            <button class="btn" onclick="openContactPopup()" style="width:100%; background:transparent; border:1px solid var(--primary-color); color:var(--primary-color); padding: 0.35rem; font-size: 0.78rem;">Get Updates</button>
+          </div>
+        </div>
+      `;
+    });
+    postsGrid.innerHTML = html;
+  }
+
+  async function publishCompanyPost(e) {
+    e.preventDefault();
+    const title = document.getElementById('post-title').value;
+    const category = document.getElementById('post-category').value;
+    const imageUrl = document.getElementById('post-image-url').value;
+    const externalLink = document.getElementById('post-external-link').value;
+    const content = document.getElementById('post-content').value;
+
+    const { error } = await supabaseClient
+      .from('company_posts')
+      .insert([{ title, category, image_url: imageUrl, external_link: externalLink, content }]);
+
+    if (error) {
+      alert('Error publishing post: ' + error.message);
+    } else {
+      alert('Success! Your update has been published live.');
+      document.getElementById('post-title').value = '';
+      document.getElementById('post-image-url').value = '';
+      document.getElementById('post-external-link').value = '';
+      document.getElementById('post-content').value = '';
+      closeAdminModal();
+      await loadCompanyPosts();
+    }
+  }
+
+  window.addEventListener('keydown', async (e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === 'KeyA') {
+      e.preventDefault();
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (session && session.user && session.user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+        document.getElementById('admin-user-info').innerHTML = `Logged in as Admin: <strong>${session.user.email}</strong>`;
+        document.getElementById('admin-modal').style.display = 'flex';
+      } else {
+        alert('Access Denied: You must be signed in as the site administrator to use the backend shortcut.');
+      }
+    }
+  });
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    const isSubscribed = localStorage.getItem('joma_is_subscribed');
+    setTimeout(() => {
+      if (!isSubscribed) {
+        document.getElementById('welcome-promo-modal').style.display = 'flex';
+      } else {
+        document.getElementById('subscribed-visit-modal').style.display = 'flex';
+      }
+    }, 1500);
+  });
+
+  window.closeWelcomePromo = function() { document.getElementById('welcome-promo-modal').style.display = 'none'; }
+  window.closeSubscribedVisitModal = function() { document.getElementById('subscribed-visit-modal').style.display = 'none'; }
+  function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
+
+  async function handlePromoSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('promo-email').value;
+    const subscribeNewsletter = document.getElementById('newsletter-checkbox').checked;
+    await supabaseClient.from('subscribers').insert([{ email, newsletter_opt_in: subscribeNewsletter }]);
+    localStorage.setItem('joma_is_subscribed', 'true');
+    alert('Success! Your 15% discount code has been applied. Welcome to JG community!');
+    closeWelcomePromo();
+  }
+
+  async function submitContactForm(e) {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll('input, textarea');
+    await supabaseClient.from('contact_submissions').insert([{ name: inputs[0].value, email: inputs[1].value, company: inputs[2].value, message: inputs[3].value }]);
+    alert('Success! Your message was saved securely to your Supabase database.');
+    e.target.reset();
+  }
+
+  async function submitContactPopup(e) {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll('input');
+    await supabaseClient.from('subscribers').insert([{ email: inputs[1].value, newsletter_opt_in: true }]);
+    await supabaseClient.from('contact_submissions').insert([{ name: inputs[0].value, email: inputs[1].value, company: inputs[2].value, message: "Requested updates via post card." }]);
+    alert('Successfully signed up for updates!');
+    closeContactPopup();
+    e.target.reset();
+  }
+
+  let currentAuthMode = 'signin';
+  function switchAuthTab(mode) {
+    currentAuthMode = mode;
+    const titleEl = document.getElementById('auth-mode-title');
+    const submitBtn = document.getElementById('auth-submit-btn');
+    const tabSignin = document.getElementById('tab-signin');
+    const tabSignup = document.getElementById('tab-signup');
+    const footerText = document.getElementById('auth-footer-text');
+
+    if (mode === 'signup') {
+      titleEl.innerText = 'Create a New Account';
+      submitBtn.innerText = 'Sign Up';
+      tabSignup.style.background = 'var(--primary-color)';
+      tabSignin.style.background = '#666';
+      footerText.innerHTML = `Already have an account? <a href="#" onclick="switchAuthTab('signin'); return false;">Sign in</a>`;
+    } else {
+      titleEl.innerText = 'Sign In to Your Account';
+      submitBtn.innerText = 'Sign In';
+      tabSignin.style.background = 'var(--primary-color)';
+      tabSignup.style.background = '#666';
+      footerText.innerHTML = `Don't have an account? <a href="#" onclick="switchAuthTab('signup'); return false;">Create one</a>`;
+    }
+  }
+
+  async function handleAuthSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+
+    if (currentAuthMode === 'signup') {
+      let { data, error } = await supabaseClient.auth.signUp({ email, password });
+      if (error) {
+        alert('Sign up error: ' + error.message);
+      } else {
+        alert('Account created successfully! You are now signed in.');
+        closeProfileModal();
+      }
+    } else {
+      let { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        alert('Sign in failed: ' + error.message);
+      } else {
+        alert('Signed in successfully!');
+        closeProfileModal();
+      }
+    }
+  }
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    const query = document.getElementById("search-input").value.toLowerCase().trim();
+    const resultsContainer = document.getElementById("search-results");
+    if (!query) return;
+    resultsContainer.innerHTML = `<p style="color:var(--primary-color);">Searching database...</p>`;
+    
+    let combinedResults = [];
+    const { data: posts } = await supabaseClient.from('company_posts').select('*').ilike('title', `%${query}%`);
+    if (posts) posts.forEach(p => combinedResults.push({ title: p.title, type: `Magazine/News (${p.category})` }));
+
+    if (combinedResults.length === 0) {
+      resultsContainer.innerHTML = `<p>No matches found for "<strong>${query}</strong>".</p>`;
+      return;
+    }
+
+    let html = `<div style="max-height: 200px; overflow-y: auto; text-align: left;"><ul style="padding-left: 15px; margin: 0;">`;
+    combinedResults.forEach(item => { html += `<li style="margin-bottom: 6px;"><strong>${item.title}</strong> <span style="font-size:0.8rem; color:#666;">(${item.type})</span></li>`; });
+    html += `</ul></div>`;
+    resultsContainer.innerHTML = html;
+  }
+
+  function togglePopup(popupId) {
+    const popups = document.querySelectorAll('.overlay-popup');
+    popups.forEach(p => { if (p.id !== popupId) p.classList.remove('active'); });
+    const target = document.getElementById(popupId);
+    if (target) target.classList.toggle('active');
+  }
+
+  function closeAllPopups() { document.querySelectorAll('.overlay-popup').forEach(p => p.classList.remove('active')); }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.header-top') && !e.target.closest('.header-bottom-bar') && !e.target.closest('.overlay-popup')) {
+      closeAllPopups();
+    }
+  });
+
+  function openSearchModal() { document.getElementById("search-modal").style.display = "flex"; }
+  function closeSearchModal() { document.getElementById("search-modal").style.display = "none"; }
+  function openProfileModal() { switchAuthTab('signin'); document.getElementById("profile-modal").style.display = "flex"; }
+  function closeProfileModal() { document.getElementById("profile-modal").style.display = "none"; }
+  function openContactPopup() { document.getElementById("contact-popup").style.display = "flex"; }
+  function closeContactPopup() { document.getElementById("contact-popup").style.display = "none"; }
+
+  const slides = document.querySelectorAll('.carousel-slide');
+  const carouselWrapper = document.querySelector('.carousel-wrapper');
+  const dots = document.querySelectorAll('.dot');
+  let currentIndex = 0;
+  
+  function showSlide(index) {
+    currentIndex = (index + slides.length) + slides.length;
+    carouselWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+  }
+
+  const carouselContainer = document.getElementById('carousel-container');
+  let startX = 0, isDragging = false;
+  carouselContainer.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  carouselContainer.addEventListener('touchend', (e) => { handleSwipe(startX, e.changedTouches[0].clientX); }, { passive: true });
+  carouselContainer.addEventListener('mousedown', (e) => { startX = e.clientX; isDragging = true; });
+  carouselContainer.addEventListener('mouseup', (e) => { if (!isDragging) return; isDragging = false; handleSwipe(startX, e.clientX); });
+  carouselContainer.addEventListener('mouseleave', () => { isDragging = false; });
+
+  function handleSwipe(start, end) {
+    const threshold = 40;
+    if (start - end > threshold) showSlide(currentIndex + 1);
+    else if (end - start > threshold) showSlide(currentIndex - 1);
+  }
+
+  function closeModal() { document.getElementById("modal").style.display = "none"; }
+  function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
+  function toggleFaq(button) {
+    const item = button.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
